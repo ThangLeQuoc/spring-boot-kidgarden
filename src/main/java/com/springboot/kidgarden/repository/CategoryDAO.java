@@ -10,8 +10,10 @@ import com.springboot.kidgarden.models.Category;
 
 public interface CategoryDAO extends JpaRepository<Category, Long> {
 	
+	
+	
 	//retrieve id of category by short name
-	@Query("SELECT category.category_id FROM Category category WHERE category.categoryshortname = ?")
+	@Query("SELECT category.category_id FROM Category category WHERE category.categoryshortname = ?1")
 	Long getIdByName(String categoryShortName);
 	
 }

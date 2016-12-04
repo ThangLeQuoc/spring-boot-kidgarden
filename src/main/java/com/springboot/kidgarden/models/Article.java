@@ -30,32 +30,50 @@ public class Article {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long article_id;   // articleid
-
-	private String header; // 
+	
+	@Column(name="header", nullable = true)
+	private String header;
+	
+	@Column(name="headerdescription", nullable = true)
 	private String headerdescription;
+	
+	@Column(name="headerimage", nullable = true)
 	private String headerimage;
+	
+	@Column(name="location", nullable = true)
 	private String location;
+	
+	@Column(name="date", nullable = true)
 	private String date;
+	
+	@Column(name="note", nullable = true)
 	private String note;
+	
+	@Column(name="dayofpublish", nullable = true)
 	private String dayofpublish;
+	
+	@Column(name="content", nullable=true)
 	@Lob
 	private String content;
+	
+	@Column(name="source", nullable=true)
 	private String source;
 	
 	// One Article -> One Category || One category -> Many Articles
 	
 	@ManyToOne(optional=false, fetch=FetchType.LAZY)
 	@JsonBackReference
-	@JoinColumn(name="category", referencedColumnName="category_id")
+	@JoinColumn(name="category", referencedColumnName="category_id", nullable = true)
 	private Category category;
 	
 	// One Article -> One author || One author -> Many Articles
 	
 	@ManyToOne(optional = false, fetch=FetchType.LAZY)
 	@JsonBackReference
-	@JoinColumn(name="editor", referencedColumnName="username")
+	@JoinColumn(name="editor", referencedColumnName="username", nullable = true)
 	private Useraccount editor;
 
+	
 	
 	
 	

@@ -15,13 +15,20 @@ public class ArticleService {
 	@Autowired
 	private ArticleDAO articleRepository;
 	
-	
+	// query Articles
 	public List<Article> getAllArticles(){
 		return articleRepository.findAll();
 	}
 	
 	public List<Article> getArticlesByCategoryId(Long categoryId){
-		return articleRepository.findByCategory(categoryId);
-		
+		return articleRepository.findByCategory(categoryId);	
 	}
+	
+	
+	// create new Articles
+	public void postArticle(Article article){
+		articleRepository.saveAndFlush(article);
+	}
+	
+	//
 }
