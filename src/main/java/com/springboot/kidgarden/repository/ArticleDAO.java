@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.springboot.kidgarden.models.Article;
 
@@ -16,6 +17,7 @@ public interface ArticleDAO extends JpaRepository<Article, Long> {
 	List<Article> findByCategory(Long category_id);
 	
 	// update an article
+	@Transactional
 	@Modifying
 	@Query("UPDATE Article article SET article.header = :header, article.headerdescription = :headerdescription,  article.headerimage = :headerimage,"
 			+ " article.location = :location, article.date = :date, article.note=:note, article.dayofpublish = :dayofpublish, article.content = :content, article.source = :source "
@@ -30,5 +32,4 @@ public interface ArticleDAO extends JpaRepository<Article, Long> {
 							 @Param("content") String content,
 							 @Param("source") String source,
 							 @Param("article_id") String article_id);
-							 
 }

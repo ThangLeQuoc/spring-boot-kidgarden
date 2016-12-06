@@ -23,14 +23,70 @@ public class CategoryController {
 		AccentRemover remover = new AccentRemover();
 		remover.setString(categoryName);
 		String shortname = remover.getCovertedString();
-		System.out.print("Receive !");
-		Category category = new Category();
-		category.setCategoryname(categoryName);
-		category.setCategorydescription(categoryDescription);
-		category.setCategoryshortname(shortname);
 		
-		categoryService.createCategory(category);
-		return "Category Created !";
+		if(categoryService.categoryNameIsExist(shortname)){
+			return "Category Is Exist !";
+		}
+		else{
+			Category category = new Category();
+			category.setCategoryname(categoryName);
+			category.setCategorydescription(categoryDescription);
+			category.setCategoryshortname(shortname);
+			System.out.println(categoryName+"-"+categoryDescription+"-"+shortname);
+			categoryService.createCategory(category);
+			return "Category Created !";
+		}
+	}
+	
+	@RequestMapping(value="administrator/category/modify", method = RequestMethod.PUT)
+	public String modifyCategory(@RequestParam("categoryname") String categoryName,
+												@RequestParam("categorydescription") String categoryDescription,
+												@RequestParam("category_id") String category_id){
+		if(categoryService.categoryIdIsExist(Long.valueOf(category_id))){
+			AccentRemover remover = new AccentRemover();
+			remover.setString(categoryName);
+			String shortname = remover.getCovertedString();
+			
+			// category exist, begin modify
+			Category category = new Category();
+			
+			category.setCategory_id(Long.valueOf(category_id));
+			category.setCategoryname(categoryName);
+			category.setCategorydescription(categoryDescription);
+			category.setCategoryshortname(shortname);
+			
+			categoryService.modifyCatagory(category);
+			
+			return "Category Modified !";
+		}
+		else{
+			return "Category not found";
+		}
+	}
+	
+	@RequestMapping(value="administrator/category/remove", method = RequestMethod.POST)
+	public String removeCategory(@RequestParam("categoryname") String categoryName,
+												 @RequestParam("categorydescription") String categoryDescription,
+												 @RequestParam("category_id") String category_id){
+		if(categoryService.categoryIdIsExist(Long.valueOf(category_id))){
+			AccentRemover remover = new AccentRemover();
+			remover.setString(categoryName);
+			String shortname = remover.getCovertedString();
+			
+			// category exist, remove it
+			Category category = new Category();
+			
+			category.setCategory_id(Long.valueOf(category_id));
+			category.setCategoryname(categoryName);
+			category.setCategorydescription(categoryDescription);
+			category.setCategoryshortname(shortname);
+			
+			categoryService.removeCategory(category);
+			return "Category Removed !";
+		}
+		else{
+			return "Category not found";
+		}
 	}
 	
 }

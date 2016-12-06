@@ -22,11 +22,36 @@ public class CategoryService {
 		categoryRepository.saveAndFlush(category);
 	}
 	
+	public boolean categoryNameIsExist(String categoryShortName){
+		Long category_id = categoryRepository.getIdByName(categoryShortName);
+		if(category_id == null)
+			return false;
+		else{
+			if(categoryRepository.exists(category_id))
+				return true;
+			return false;
+		}
+	
+	}
+	
+	public boolean categoryIdIsExist(Long category_id){
+		if(categoryRepository.exists(category_id))
+			return true;
+		return false;
+	}
 	
 	
+
+	//modify
+	public void modifyCatagory(Category category){
+		categoryRepository.updateCategory(category.getCategoryname(), category.getCategorydescription(), category.getCategoryshortname(), category.getCategory_id());
+	}
 	
+	//remove
 	
-	
+	public void removeCategory(Category category){
+		categoryRepository.delete(category);
+	}
 	
 	
 	public Long getIdByName(String shortCategoryName){
