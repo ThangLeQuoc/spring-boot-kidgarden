@@ -1,3 +1,26 @@
-<h1>
-  {{title}}
-</h1>
+<md-sidenav-layout>
+  <md-toolbar color="primary">
+    <button md-icon-button (click)="start.toggle()">
+    <md-icon class="md-24">menu</md-icon>
+    </button>
+    <!-- Toolbar title -->
+    <span id="header-title">Kid Garden</span>
+    <!-- Side Navigation -->
+  </md-toolbar>
+  <md-sidenav class="md-sidenav-left" #start mode="over">
+    <md-toolbar color="primary">
+      <span>Category</span>
+    </md-toolbar>
+
+    <md-nav-list>
+      <md-list-item>
+        <a routerLink="/home" (click)="start.close()" md-tooltip="Tổng quan các hoạt động" tooltip-position="right" >Trang chủ</a>
+      </md-list-item>
+      <md-list-item *ngFor="let category of categories; let i = index"> 
+        <a routerLink="/{{category.categoryshortname}}/articles" (click)="start.close()" md-tooltip="{{category.categorydescription}}" tooltip-position="right">{{category.categoryname}}</a>
+      </md-list-item>
+    </md-nav-list>
+  </md-sidenav>
+
+  <router-outlet></router-outlet>
+</md-sidenav-layout>

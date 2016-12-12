@@ -1,0 +1,25 @@
+<!-- List of Article goes here-->
+<div [hidden]="isHidden" *ngIf="articles" align="left" class = "container news-category-group">
+  <section class="row">
+    <!--  Using css flex box-->
+    <!-- ngFor - fetch all article-->
+    <article class="col-md-4 col-sm-6" *ngFor="let article of articles" (click)="selectArticle(article)">
+      <md-card>
+        <img class="article-image" md-card-image src="{{article.headerimage}}">
+        <md-card-content>
+          <md-card-title>
+            <div class="article-title-container">
+               <p class="article-title">{{article.header}}</p>
+            </div>
+            </md-card-title>
+          <md-card-subtitle>Tác giả: {{article.source}} </md-card-subtitle>
+          <div class="article-description-container">
+            <p class="article-description">{{article.headerdescription}}</p>
+          </div>
+        </md-card-content>
+      </md-card>
+    </article>
+  </section>
+</div>
+
+
