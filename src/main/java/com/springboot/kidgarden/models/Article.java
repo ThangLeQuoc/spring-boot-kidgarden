@@ -7,6 +7,7 @@
 
 package com.springboot.kidgarden.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,6 +18,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -61,7 +64,7 @@ public class Article {
 	
 	// One Article -> One Category || One category -> Many Articles
 	
-	@ManyToOne(optional=false, fetch=FetchType.LAZY)
+	@ManyToOne(optional=false, fetch=FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JsonBackReference
 	@JoinColumn(name="category", referencedColumnName="category_id", nullable = true)
 	private Category category;
@@ -93,12 +96,14 @@ public class Article {
 		this.header = header;
 	}
 
-	public String getHeaderDescription() {
+	
+
+	public String getHeaderdescription() {
 		return headerdescription;
 	}
 
-	public void setHeaderDescription(String headerDescription) {
-		this.headerdescription = headerDescription;
+	public void setHeaderdescription(String headerdescription) {
+		this.headerdescription = headerdescription;
 	}
 
 	public String getHeaderimage() {

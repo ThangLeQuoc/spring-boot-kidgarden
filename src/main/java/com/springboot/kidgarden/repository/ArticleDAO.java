@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.springboot.kidgarden.models.Article;
+import com.springboot.kidgarden.models.Category;
 
 public interface ArticleDAO extends JpaRepository<Article, Long> {	
 	
@@ -32,4 +33,7 @@ public interface ArticleDAO extends JpaRepository<Article, Long> {
 							 @Param("content") String content,
 							 @Param("source") String source,
 							 @Param("article_id") String article_id);
+	
+	//list articles of selected category
+	List<Article> findAllByCategory(Category category);
 }

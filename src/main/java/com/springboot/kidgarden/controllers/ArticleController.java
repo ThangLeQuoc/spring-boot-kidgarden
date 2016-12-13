@@ -29,15 +29,25 @@ public class ArticleController {
 	@Autowired
 	private ArticleDAO articleRepo;
 
-	// get articles
+	// get articles of selected category
 	@RequestMapping(value = "{category}/articles", method = RequestMethod.GET)
 	public List<Article> getArticles(@PathVariable("category") String category) {
 		if (category.equals("all")) {
 			return articleService.getAllArticles();
 		} else {
+			
+			
 			Long categoryId = categoryService.getIdByName(category);
-			return articleService.getArticlesByCategoryId(categoryId);
+			Category selectedCategory = categoryService.getCategory(categoryId);
+			return articleRepo.findAllByCategory(selectedCategory);
+			//return articleService.getArticlesByCategoryId(categoryId);
 		}
+	}
+	
+	//get a specific article
+	@RequestMapping(value="{category}/articles/{id}", method = RequestMethod.GET)
+	public Article getArticleDetail(@PathVariable("id") String article_id){
+		return null;
 	}
 
 	// post articles
@@ -54,7 +64,7 @@ public class ArticleController {
 
 		Article article = new Article();
 		article.setHeader(header);
-		article.setHeaderDescription(headerDescription);
+		article.setHeaderdescription(headerDescription);
 		article.setHeaderimage(headerImage);
 		article.setLocation(location);
 		article.setDate(date);

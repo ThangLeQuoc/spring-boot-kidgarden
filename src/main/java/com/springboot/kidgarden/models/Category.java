@@ -2,15 +2,21 @@ package com.springboot.kidgarden.models;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -32,9 +38,9 @@ public class Category {
 	private String categoryshortname;
 	
 	
-	@OneToMany(mappedBy = "category")
+	@OneToMany(mappedBy = "category", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	@Column(nullable = true)
-	@JsonManagedReference
+	@JsonIgnore
 	private Set<Article>articles;
 
 	
@@ -78,5 +84,6 @@ public class Category {
 	public void setArticles(Set<Article> articles) {
 		this.articles = articles;
 	}
+	
 	
 }

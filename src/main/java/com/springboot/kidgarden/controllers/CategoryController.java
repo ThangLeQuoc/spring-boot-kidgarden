@@ -1,7 +1,10 @@
 package com.springboot.kidgarden.controllers;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +19,10 @@ public class CategoryController {
 	
 	@Autowired
 	private CategoryService categoryService;
+	@RequestMapping(value="categories", method=RequestMethod.GET)
+	public List<Category> getCategories(){
+		return categoryService.getAllCategory();
+	}
 	
 	@RequestMapping(value="administrator/category/create", method = RequestMethod.POST)
 	public String createCategory(@RequestParam("categoryname") String categoryName,
@@ -32,7 +39,6 @@ public class CategoryController {
 			category.setCategoryname(categoryName);
 			category.setCategorydescription(categoryDescription);
 			category.setCategoryshortname(shortname);
-			System.out.println(categoryName+"-"+categoryDescription+"-"+shortname);
 			categoryService.createCategory(category);
 			return "Category Created !";
 		}

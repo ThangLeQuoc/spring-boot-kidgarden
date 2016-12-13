@@ -15,13 +15,20 @@ public class ArticleService {
 	@Autowired
 	private ArticleDAO articleRepository;
 	
-	// query Articles
+	// query all Articles
 	public List<Article> getAllArticles(){
 		return articleRepository.findAll();
 	}
 	
+	// query Articles by Selected Category
 	public List<Article> getArticlesByCategoryId(Long categoryId){
 		return articleRepository.findByCategory(categoryId);	
+	}
+	
+	// query an Article for detail
+	public Article getArticleDetail(String article_id){
+		Long article_id_temp = Long.valueOf(article_id); 
+		return articleRepository.findOne(article_id_temp);
 	}
 	
 	
