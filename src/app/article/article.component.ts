@@ -28,6 +28,10 @@ export class ArticleComponent implements OnInit {
     });
   }
 
+  selectArticle(article: Article):void {
+    console.log(article.article_id);
+  }
+
 
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
