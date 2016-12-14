@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ArticleComponent } from './article/article.component';
 
-//import { NewsDetailComponent } from './news-detail/news-detail.component';
+import { ArticleDetailComponent } from './article-detail/article-detail.component';
 import { AppComponent } from './app.component';
 const appRoutes: Routes = [
     {
@@ -19,11 +19,10 @@ const appRoutes: Routes = [
         path: ':categorypath/articles',
         component: ArticleComponent
     },
-
-    // {
-    //     path: 'news/:category/post/:index',
-    //     component: NewsDetailComponent
-    // }
+    {
+        path: ':categorypath/articles/:id',
+        component: ArticleDetailComponent
+    }
 
 ];
 

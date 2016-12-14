@@ -1,0 +1,19 @@
+.article-icon{
+    vertical-align: text-bottom;
+    margin-right: 10px;
+}
+
+.additional-info{
+    display: inline-block;
+}
+
+img{
+    margin-top: 20px;
+    width: 100%;
+}
+
+.backbutton{
+    margin-top: 25px;
+    margin-left: 30px;
+    width: 180px;
+}

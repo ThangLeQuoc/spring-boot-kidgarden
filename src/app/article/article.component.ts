@@ -12,12 +12,14 @@ import { Article } from './article';
 })
 export class ArticleComponent implements OnInit {
 
+  
   constructor(private articleService: ArticleService,
     private router: Router,
     private route: ActivatedRoute) { }
 
   articles: Article[];
   selectedArticle: Article;
+  selectedCategory: String;
   isHidden: boolean = false;
 
 
@@ -29,20 +31,23 @@ export class ArticleComponent implements OnInit {
   }
 
   selectArticle(article: Article):void {
-    console.log(article.article_id);
+    this.router.navigate([this.selectedCategory,'articles', article.article_id]);
+    //this.router.navigate
   }
 
 
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
-      let choosenCategory = params['categorypath'];
+      
+      this.selectedCategory = params['categorypath'];
 
       // no parameter specified, get all articles      
-      if (choosenCategory === undefined) {
+      if (this.selectedCategory === undefined) {
+        this.selectedCategory = 'all';
         this.getArticleList('all');
       }
       else {
-        this.getArticleList(choosenCategory);
+        this.getArticleList(this.selectedCategory);
       }
     });
   }

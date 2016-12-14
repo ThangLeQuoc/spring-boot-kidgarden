@@ -10,11 +10,18 @@ export class ArticleService {
 
     }
 
-    // get by article
+    // get article by category
     getByCategory(categoryShortName: String): Promise<Article[]> {
         return this.http.get('http://localhost:8080/' + categoryShortName + '/articles')
             .toPromise().then(response => response.json()).catch(this.handleError);
     }
+
+    // get article detail by id
+    getByArticleId(categoryShortName: String, articleId: String): Promise<Article> {
+        return this.http.get('http://localhost:8080/'+categoryShortName+'/articles/'+ articleId)
+        .toPromise().then(response => response.json()).catch(this.handleError);
+    }
+
 
     handleError(error: any): Promise<any> {
         console.error('An error occurred', error);

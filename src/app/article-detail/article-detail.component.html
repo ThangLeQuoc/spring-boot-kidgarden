@@ -1,3 +1,39 @@
-<p>
-  article-detail works!
-</p>
+<div *ngIf="selectedArticle">
+  <article class="container">
+    <div class="row">
+      <!-- image and basic detail -->
+      <div class="col-md-3">
+        <img src="{{selectedArticle.headerimage}}" title="{{selectedArticle.header}}">
+      </div>
+      <div class="col-md-7">
+        <h2>{{selectedArticle.header}}</h2>
+        <p>{{selectedArticle.headerdescription}}</p>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div>
+              <md-icon class="article-icon" md-tooltip="Địa điểm tổ chức" tooltip-position="left">place</md-icon><span><p class="additional-info">{{selectedArticle.location}}</p></span>
+            </div>
+            <div>
+              <md-icon class="article-icon" md-tooltip="Ngày diễn ra" tooltip-position="left">event</md-icon><span><p class="additional-info">{{selectedArticle.date}}</p></span>
+            </div>
+            <div>
+              <md-icon class="article-icon" md-tooltip="Ghi chú thêm" tooltip-position="left">feedback</md-icon><span><p class="additional-info">{{selectedArticle.note}}</p></span>
+            </div>
+            <div>
+              <md-icon class="article-icon" md-tooltip="Người đại diện" tooltip-position="left">person</md-icon><span><p class="additional-info">{{selectedArticle.source}}</p></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row col-md-10">
+      <div>
+        <md-icon class="article-icon">description</md-icon><span><h3 class="additional-info">Thông tin chi tiết</h3></span>
+      </div>
+      <section>
+        {{selectedArticle.content}}
+      </section>
+      <button (click)="goBack()" class="btn btn-primary backbutton">Back</button>
+    </div>
+  </article>
+</div>
