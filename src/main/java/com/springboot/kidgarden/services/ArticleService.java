@@ -27,15 +27,12 @@ public class ArticleService {
 	
 	// query an Article for detail
 	public Article getArticleDetail(String article_id){
-		Long article_id_temp = Long.valueOf(article_id); 
-		return articleRepository.findOne(article_id_temp);
+		Long id = Long.valueOf(article_id); 
+		return articleRepository.findOne(id);
 	}
-	
 	
 	// create new Articles
 	public void postArticle(Article article){
 		articleRepository.saveAndFlush(article);
 	}
-	
-	//
 }

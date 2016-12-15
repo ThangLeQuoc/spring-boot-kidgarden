@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.springboot.kidgarden.models.Article;
 import com.springboot.kidgarden.models.Category;
+import com.springboot.kidgarden.models.Useraccount;
 
 public interface ArticleDAO extends JpaRepository<Article, Long> {	
 	
@@ -36,4 +37,5 @@ public interface ArticleDAO extends JpaRepository<Article, Long> {
 	
 	//list articles of selected category
 	List<Article> findAllByCategory(Category category);
+	
 }

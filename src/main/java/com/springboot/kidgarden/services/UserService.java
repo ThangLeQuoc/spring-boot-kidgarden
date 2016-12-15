@@ -15,4 +15,9 @@ public class UserService {
 	public Useraccount getUser(String username){
 		return userRepository.findUser(username);
 	}
+	
+	public Useraccount getUserByArticleId(String article_id){
+		Long id = Long.valueOf(article_id);
+		return userRepository.findOneByArticle_Id(id);
+	}
 }
