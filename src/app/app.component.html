@@ -5,22 +5,52 @@
     </button>
     <!-- Toolbar title -->
     <span id="header-title">Kid Garden</span>
-    <!-- Side Navigation -->
+    <!-- Go to Dashboard button -->
+    <div class="administrator-access" [hidden]="loggedIn">
+      <button md-icon-button (click)="signIn()">
+    <md-icon class="md-24" style="color:white;font:bold;">dvr</md-icon>
+    </button>
+    </div>
+    <!-- Md Menu when user logged in -->
+    <!-- menu opens when trigger button is clicked -->
+    <div *ngIf="checkProfile()" class="administrator-access">
+      <p>Hello, {{user.name}} <span><button md-icon-button [md-menu-trigger-for]="menu">
+   <md-icon>more_vert</md-icon>
+</button>
+      <md-menu #menu="mdMenu">
+        
+        <button md-menu-item>
+    <md-icon>playlist_add</md-icon>
+    <span> Create new post </span>
+        </button>
+        <button md-menu-item>
+    <md-icon> account_box </md-icon>
+    <span> Change Info </span>
+  </button>
+        <button md-menu-item (click)="auth.logout()">
+    <md-icon>reply </md-icon>
+    <span> Sign out </span>
+  </button>
+        </md-menu>
+        </span>
+      </p>
+      <!-- menu opens when trigger button is clicked -->
+      <!-- menu opens when trigger button is clicked -->
+    </div>
   </md-toolbar>
   <md-sidenav class="md-sidenav-left" #start mode="over">
     <md-toolbar color="primary">
       <span>Category</span>
     </md-toolbar>
-
     <md-nav-list>
       <md-list-item>
-        <a routerLink="/home" (click)="start.close()" md-tooltip="Tổng quan các hoạt động" tooltip-position="right" >Trang chủ</a>
+        <a routerLink="/home" (click)="start.close()" md-tooltip="Tổng quan các hoạt động" tooltip-position="right">Trang chủ</a>
       </md-list-item>
-      <md-list-item *ngFor="let category of categories; let i = index"> 
-        <a routerLink="/{{category.categoryshortname}}/articles" (click)="start.close()" md-tooltip="{{category.categorydescription}}" tooltip-position="right">{{category.categoryname}}</a>
+      <md-list-item *ngFor="let category of categories; let i = index">
+        <a routerLink="/{{category.categoryshortname}}/articles" (click)="start.close()" md-tooltip="{{category.categorydescription}}"
+          tooltip-position="right">{{category.categoryname}}</a>
       </md-list-item>
     </md-nav-list>
   </md-sidenav>
-
   <router-outlet></router-outlet>
 </md-sidenav-layout>

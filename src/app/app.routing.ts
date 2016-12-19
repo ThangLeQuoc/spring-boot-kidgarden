@@ -4,6 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { ArticleComponent } from './article/article.component';
 
 import { ArticleDetailComponent } from './article-detail/article-detail.component';
+
+
 import { AppComponent } from './app.component';
 const appRoutes: Routes = [
     {

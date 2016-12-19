@@ -4,6 +4,8 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ArticleService } from './article.service';
 import { Article } from './article';
 
+import { UserService } from '../services/user.service';
+
 @Component({
   selector: 'app-article',
   templateUrl: './article.component.html',
@@ -14,15 +16,16 @@ export class ArticleComponent implements OnInit {
 
   
   constructor(private articleService: ArticleService,
-    private router: Router,
-    private route: ActivatedRoute) { }
+              private userService: UserService,
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   articles: Article[];
   selectedArticle: Article;
   selectedCategory: String;
   isHidden: boolean = false;
 
-
+  status: any = this.userService.isLoggedIn();
 
   getArticleList(categoryPath: String): void {
     this.articleService.getByCategory(categoryPath).then(Articles => {
@@ -38,7 +41,6 @@ export class ArticleComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
-      
       this.selectedCategory = params['categorypath'];
 
       // no parameter specified, get all articles      
