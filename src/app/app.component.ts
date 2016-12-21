@@ -25,7 +25,8 @@ export class AppComponent implements OnInit  {
   profile: any;
   constructor(private categoryService: CategoryService,
               private auth: Auth,
-              private userService: UserService) {
+              private userService: UserService,
+              private router: Router) {
 
   }
 
@@ -63,7 +64,7 @@ export class AppComponent implements OnInit  {
           this.user.email = profileJSON.email;
           this.user.facebook = profileJSON.facebook;
           this.user.phonenumber = profileJSON.phonenumber;
-          
+
           this.userService.logIn();
           this.loggedIn = true;
           return true;
@@ -77,5 +78,9 @@ export class AppComponent implements OnInit  {
     console.log(profile);
     let json = JSON.parse(profile);
     console.log(json.name);
+  }
+
+  createNewPost(){
+    this.router.navigate(['/administrator/create']);
   }
 }

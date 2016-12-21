@@ -1,0 +1,75 @@
+<div class="container verticle-center article-editor">
+  <form class="col-md-10">
+    <legend>Create new post</legend>
+    <!-- header-->
+    <div class="form-group">
+      <label for="articleHeader">Article Header</label>
+      <input type="text" class="form-control" id="articleHeader" name="articleHeader" aria-describedby="headerHelp" placeholder="Enter Article Header">
+      <small id="headerHelp" class="form-text text-muted">An article header that's help the user know what does your activity about</small>
+    </div>
+    <!-- End of Header-->
+    <!-- Description -->
+    <div class="form-group">
+      <label for="articleHeaderDescription">Short Description</label>
+      <input type="text" class="form-control" id="articleHeaderDescription" name="articleHeaderDescription" value="" placeholder="Enter Header Description"
+        aria-describedby="headerDescriptionHelp">
+      <small id="headerDescriptionHelp" class="form-text text-muted">Short Description about the activity</small>
+    </div>
+    <!-- End of description-->
+    <!-- Image -->
+    <div class="form-group">
+      <label for="articleImage">Event Image</label>
+      
+        <input type="text" class="form-control" id="articleImage" name="articleImage" value="" placeholder="URL to image (http://example.png)..."
+          aria-describedby="articleImageHelp" [(ngModel)]="article.headerimage">
+   
+      <small id="articleImageHelp" class="form-text text-muted">Image for the post</small>
+      <img src="{{article.headerimage}}" class="img-responsive article-image" alt="Image" *ngIf="(article.headerimage != null && article.headerimage != '') ">
+    </div>
+    <!-- End of image -->
+    <!-- Location -->
+    <div class="form-group">
+      <label for="articleLocation">Location</label>
+      <input type="text" class="form-control" id="articleLocation" name="articleLocation" value="" placeholder="Enter Event Location"
+        aria-describedby="locationHelp">
+      <small id="locationHelp" class="form-text text-muted">Event Location</small>
+    </div>
+    <!-- End Of Location -->
+    <!-- Date-->
+    <div class="form-group">
+      <label for="articleDate">Date of Event</label>
+      <input type="date" class="form-control" id="articleDate" name="articleDate" value="" placeholder="Choose Date of Event" aria-describedby="dateHelp">
+      <small id="dateHelp" class="form-text text-muted">Event Date</small>
+    </div>
+    <!-- End of Date-->
+    <!-- Note -->
+    <div class="form-group">
+      <label for="articleNote"> Event Note</label>
+      <input type="text" class="form-control" id="articleNote" name="articleNote" value="" placeholder="Enter Note" aria-describedby="noteHelp">
+      <small id="noteHelp" class="form-text text-muted">Some attention about the event</small>
+    </div>
+    <!-- End Of Note -->
+    <!-- Content -->
+    <div class="form-group">
+      <label for="articleContent">Content in Detail</label>
+      <textarea class="form-control" id="articleContent" rows="3" name="articleContent"></textarea>
+    </div>
+    <!-- End of content -->
+    <!-- Source -->
+    <div class="form-group">
+      <label for="articleSource">Host</label>
+      <input class="form-control" id="articleSource" name="articleSource" aria-describedby="sourceHelp">
+      <small id="sourceHelp" class="form-text text-muted">Information about the Author, Event Host</small>
+    </div>
+    <!-- End of Source -->
+    <!--  Category picker -->
+    <div class="form-group">
+      <label for="articleCategory">Article Category</label>
+      <select class="form-control" id="articleCategory" name="articleCategory">
+      <option *ngFor="let category of categories" value="category.category_id">{{category.categoryname}}</option>
+    </select>
+    </div>
+    <!-- End of category picker -->
+    <button type="submit" class="btn btn-primary">Publish !</button>
+  </form>
+</div>

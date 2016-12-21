@@ -17,13 +17,15 @@ import { UserService } from './services/user.service';
 
 // import routing
 import { routing } from './app.routing';
+import { ArticleNewComponent } from './article-new/article-new.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ArticleComponent,
-    ArticleDetailComponent
+    ArticleDetailComponent,
+    ArticleNewComponent
   ],
   imports: [
     BrowserModule,
