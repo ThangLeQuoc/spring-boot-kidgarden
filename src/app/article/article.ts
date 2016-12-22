@@ -9,4 +9,25 @@ export class Article {
     dayofpublish: String;
     content: String;
     source: String;
+    category_id: String;
+    editor: String;
+
+    constructor(){
+        this.resetField();
+    }
+
+    resetField(){
+        this.article_id = '';
+        this.header = '';
+        this.headerdescription = '';
+        this.headerimage = '';
+        this.location = '';
+        this.date = '';
+        this.note = '';
+        this.dayofpublish = '';
+        this.content = '';
+        this.source = '';
+        this.category_id = '';
+        this.editor = '';
+    }
 }

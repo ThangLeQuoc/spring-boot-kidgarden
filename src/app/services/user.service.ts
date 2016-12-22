@@ -9,8 +9,6 @@ export class UserService {
     constructor(){
         this.loggedIn = false;
     }
-
-
     isLoggedIn(){
         return this.loggedIn;
     }
@@ -21,4 +19,6 @@ export class UserService {
     logOut(){
         this.loggedIn = false;
     }
+
+
 }
